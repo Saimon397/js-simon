@@ -37,7 +37,7 @@ genNumArray();
 //var timer durata 3 sec
 const timer = setInterval(counterNum, 3000);
 
-// Funzione per far scomparire il div#numeri 
+// Funzione che fa scomparire il div 
 function counterNum() {
     document.getElementById("num").classList.add('invisible');
 }
