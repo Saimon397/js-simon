@@ -9,7 +9,7 @@ il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 //creo l'array per accogliere i 5 numeri randomici.
 
 let num = [];
-const numMax = 5;
+let numMax = 5;
 
 //ciclo per generare i numeri inserendoli nell'array
 function randomNum(min, max) {
