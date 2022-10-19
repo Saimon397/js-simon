@@ -5,26 +5,87 @@ uno alla volta, i numeri che ha visto precedentemente, tramite una casella di in
 Dopo che sono stati inseriti i 5 numeri, 
 il software dice quanti e quali dei numeri da indovinare sono stati individuati.*/
 
-
 //aggiungere un tag HTML alla pagina per visualizzare i numeri. 
-// creo l'array per accogliere i 5 numeri randomici.
+//creo l'array per accogliere i 5 numeri randomici.
 
-let numeri = [];
-let numeroDiNumeri = 5;
-//mi metto 5 dentro una variabile.
-while (numeri.length < numeroDiNumeri) {
-    let numeroGenerato = getRndInteger(1, 50);
-    // uso un ciclo while per generare i 5 numeri e popolare l'array.
-    //numeri.lenght sarà minore di 5.
-    // genero numero random dentro al while
-    if (!numeri.includes(numeroGenerato)) {
-        numeri.push(numeroGenerato);
+let num = [];
+const numMax = 5;
+
+//ciclo per generare i numeri inserendoli nell'array
+function randomNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function genNumArray() {
+    while (num.length < numMax) {
+        const genNum = randomNum(1, 100);
+        //Chek per numeri uguali
+        if (!num.includes(genNum)) {
+            num.push(genNum);
+        }
     }
+    //Stampo nell'array
+    console.log(num);
 
-    let numeriHTML = document.getElementById('numeri')
-    //prendo il div dall'HTML con document.getElementById lo assegno ad una variabile.
-    numeriHTML.innerHTML = numeri;
+    //stampo il risultato dei num gen dell'array
+    const numHTML = document.getElementById('num');
+    numHTML.innerHTML = `Questi sono i 5 numeri generati casualemente: <br> ${num}`;
+}
+//Richiamo la funzione
+genNumArray();
 
-    function getRndInteger(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+//var timer durata 3 sec
+const timer = setInterval(counterNum, 3000);
+
+// Funzione per far scomparire il div#numeri 
+function counterNum() {
+    document.getElementById("num").classList.add('invisible');
+}
+
+const pushHTML = document.getElementById('push');
+const arrayNumUser = [];
+
+function pushNum() {
+    let inputNum = parseInt(document.getElementById('inputnum-user').value);
+    if (arrayNumUser.length < numMax) {
+        arrayNumUser.push(inputNum);
+        console.log(arrayNumUser);
+        const outputnumHTML = document.getElementById('outputnum-user');
+        outputnumHTML.innerHTML = 'Numeri inseriti: ' + arrayNumUser;
     }
+}
+pushHTML.addEventListener('click', () => {
+    pushNum();
+})
+
+const verifyHTML = document.getElementById('verifyinp-user');
+const resultHTML = document.getElementById('result');
+
+let counter = 0;
+function verifyNum() {
+    for (let i = 0; i < numMax; i++) {
+        if (arrayNumUser.includes(num[i])) {
+            resultHTML.innerHTML = 'Hai vinto!!! hai indovinato i 5 numeri';
+        } else {
+            counter++;
+            console.log('no');
+            resultHTML.innerHTML = 'Hai sbagliato: ' + counter + ' numeri..';
+        }
+    }
+}
+verifyHTML.addEventListener('click', () => {
+    verifyNum();
+});
+
+const genNumHTML = document.getElementById('num-generator')
+
+//
+function genNum() {
+    num = [];
+    genNumArray();
+    document.getElementById("num").classList.add('visible');
+    document.getElementById("num").classList.remove('invisible');
+}
+genNumHTML.addEventListener('click', () => {
+    genNum();
+});
