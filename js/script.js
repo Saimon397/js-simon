@@ -29,7 +29,7 @@ function genNumArray() {
 
     //stampo il risultato dei num gen dell'array
     const numHTML = document.getElementById('num');
-    numHTML.innerHTML = `Questi sono i 5 numeri generati casualemente: <br> ${num}`;
+    numHTML.innerHTML = `Memorizza questi 5 numeri: <br> ${num}`;
 }
 //Richiamo la funzione
 genNumArray();
