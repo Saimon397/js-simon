@@ -65,11 +65,11 @@ let counter = 0;
 function verifyNum() {
     for (let i = 0; i < numMax; i++) {
         if (arrayNumUser.includes(num[i])) {
-            resultHTML.innerHTML = 'Hai vinto!!! hai indovinato i 5 numeri';
+            resultHTML.innerHTML = 'Hai vinto!!! hai indovinato i 5 numeri &#129488;';
         } else {
             counter++;
             console.log('no');
-            resultHTML.innerHTML = 'Hai sbagliato: ' + counter + ' numeri..';
+            resultHTML.innerHTML = 'Hai sbagliato: ' + counter + ' numeri &#129327;';
         }
     }
 }
